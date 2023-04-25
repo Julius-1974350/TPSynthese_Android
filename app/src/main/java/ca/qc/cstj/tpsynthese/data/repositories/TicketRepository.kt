@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class TicketRespository {
+class TicketRepository {
     private val planetDataSource = TicketDataSource()
 
     fun retrieveOne(href: String) : Flow<ApiResult<Ticket>> {

@@ -4,14 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import ca.qc.cstj.tenretni.core.ApiResult
-import ca.qc.cstj.tpsynthese.data.repositories.TicketRespository
+import ca.qc.cstj.tpsynthese.data.repositories.TicketRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DetailTicketViewModel(private val href : String):ViewModel() {
-    private val ticketRespostitory = TicketRespository()
+    private val ticketRespostitory = TicketRepository()
     private val _detailTicketUIState = MutableStateFlow<DetailTicketUIState>(DetailTicketUIState.Loading)
     val detailTicketUiState = _detailTicketUIState.asStateFlow()
 
