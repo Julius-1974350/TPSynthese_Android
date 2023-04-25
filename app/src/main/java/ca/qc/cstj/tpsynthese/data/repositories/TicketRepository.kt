@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class TicketRepository {
-    private val planetDataSource = TicketDataSource()
+    private val ticketDataSource = TicketDataSource()
     fun retrieveAll() : Flow<ApiResult<List<Ticket>>> {
         return flow {
             while (true)
@@ -31,7 +31,7 @@ class TicketRepository {
         return flow {
             emit(ApiResult.Loading)
             try {
-                emit(ApiResult.Success(planetDataSource.retrieveOne(href)))
+                emit(ApiResult.Success(ticketDataSource.retrieveOne(href)))
             }catch (ex:Exception){
                 emit(ApiResult.Error(ex))
             }

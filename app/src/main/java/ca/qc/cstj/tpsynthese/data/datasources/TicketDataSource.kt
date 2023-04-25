@@ -17,7 +17,6 @@ class TicketDataSource:JsonDataSource() {
             is Result.Failure -> throw result.error.exception
         }
     }
-
     fun retrieveAll(): List<Ticket> {
         val (_,_,result) = Constants.BaseURL.TICKETS.httpGet().responseJson()
 
