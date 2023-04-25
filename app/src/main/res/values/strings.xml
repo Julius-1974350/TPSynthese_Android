@@ -7,4 +7,12 @@
     <string name="apiErrorMessage">Error while retrieving the data from the server.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txvTicketPriority">TextView</string>
+    <string name="txvTicketDate" />
+    <string name="txvTicketCode" />
+    <string name="txvTicketStatus" />
+    <string name="loading">Loading </string>
+    <string name="countdown" translatable="false">0</string>
+    <string name="countdownMax" translatable="false">/10...</string>
+    <string name="copyright" translatable="false">Tenretni - 2023@</string>
 </resources>
