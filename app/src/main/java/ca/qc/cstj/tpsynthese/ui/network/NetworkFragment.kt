@@ -1,4 +1,4 @@
-package ca.qc.cstj.tpsynthese.ui.dashboard
+package ca.qc.cstj.tpsynthese.ui.network
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ca.qc.cstj.tpsynthese.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class NetworkFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -22,14 +22,14 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val networkViewModel =
+            ViewModelProvider(this).get(NetworkViewModel::class.java)
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        networkViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

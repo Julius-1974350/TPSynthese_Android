@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TPSynthese</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="nav_tickets">Tickets</string>
+    <string name="nav_gateways">Gateways</string>
+    <string name="nav_network">Network</string>
+    <string name="Dev_name" translatable="false">Julius Leblanc Raphaël Nadeau William Bergeron</string>
 </resources>
