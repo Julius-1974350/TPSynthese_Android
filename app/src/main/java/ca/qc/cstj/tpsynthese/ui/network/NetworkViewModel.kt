@@ -1,10 +1,10 @@
-package ca.qc.cstj.tpsynthese.ui.dashboard
+package ca.qc.cstj.tpsynthese.ui.network
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class NetworkViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"

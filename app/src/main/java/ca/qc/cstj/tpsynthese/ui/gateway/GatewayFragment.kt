@@ -1,4 +1,4 @@
-package ca.qc.cstj.tpsynthese.ui.notifications
+package ca.qc.cstj.tpsynthese.ui.gateway
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ca.qc.cstj.tpsynthese.databinding.FragmentNotificationsBinding
 
-class NotificationsFragment : Fragment() {
+class GatewayFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
 
@@ -22,14 +22,14 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        val gatewayViewModel =
+            ViewModelProvider(this).get(GatewayViewModel::class.java)
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        gatewayViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
