@@ -3,23 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_ticket">
+    app:startDestination="@id/navigation_network">
 
     <fragment
         android:id="@+id/navigation_ticket"
         android:name="ca.qc.cstj.tpsynthese.ui.ticket.TicketFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/nav_tickets"
+        tools:layout="@layout/fragment_ticket" />
 
     <fragment
         android:id="@+id/navigation_gateway"
-        android:name="ca.qc.cstj.tpsynthese.ui.network.NetworkFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="ca.qc.cstj.tpsynthese.ui.gateway.GatewayFragment"
+        android:label="@string/nav_gateways"
+        tools:layout="@layout/fragment_gateway" />
 
     <fragment
         android:id="@+id/navigation_network"
-        android:name="ca.qc.cstj.tpsynthese.ui.gateway.GatewayFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="ca.qc.cstj.tpsynthese.ui.network.NetworkFragment"
+        android:label="@string/nav_network"
+        tools:layout="@layout/fragment_network" />
+    <activity
+        android:id="@+id/loadingActivity"
+        android:name="ca.qc.cstj.tpsynthese.ui.loading.LoadingActivity"
+        android:label="activity_loading"
+        tools:layout="@layout/activity_loading" />
 </navigation>

@@ -3,7 +3,7 @@ package ca.qc.cstj.tenretni.core
 import android.content.Context
 import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
-import ca.qc.cstj.tenretni.R
+import ca.qc.cstj.tpsynthese.R
 
 object ColorHelper {
     fun ticketPriorityColor(context: Context, priority: String): ColorStateList {

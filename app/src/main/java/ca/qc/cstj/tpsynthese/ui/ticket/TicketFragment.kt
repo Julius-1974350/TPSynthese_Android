@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import ca.qc.cstj.tpsynthese.databinding.FragmentHomeBinding
+import ca.qc.cstj.tpsynthese.databinding.FragmentTicketBinding
 
 class TicketFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentTicketBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,10 +25,10 @@ class TicketFragment : Fragment() {
         val ticketViewModel =
             ViewModelProvider(this).get(TicketViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentTicketBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        val textView: TextView = binding.textTicket
         ticketViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }

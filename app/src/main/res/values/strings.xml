@@ -4,4 +4,8 @@
     <string name="nav_gateways">Gateways</string>
     <string name="nav_network">Network</string>
     <string name="Dev_name" translatable="false">Julius Leblanc Raphaël Nadeau William Bergeron</string>
+    <string name="loading">Loading </string>
+    <string name="countdown" translatable="false">0</string>
+    <string name="countdownMax" translatable="false">/10...</string>
+    <string name="copyright" translatable="false">Tenretni - 2023@</string>
 </resources>
