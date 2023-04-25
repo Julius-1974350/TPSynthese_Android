@@ -7,11 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-<<<<<<< HEAD:app/src/main/java/ca/qc/cstj/tpsynthese/ui/ticket/TicketFragment.kt
 import ca.qc.cstj.tpsynthese.databinding.FragmentTicketBinding
-=======
 import ca.qc.cstj.tpsynthese.R
->>>>>>> William:app/src/main/java/ca/qc/cstj/tpsynthese/ui/ticket/list/TicketFragment.kt
 
 class TicketFragment : Fragment(R.layout.fragment_list_tickets) {
 
