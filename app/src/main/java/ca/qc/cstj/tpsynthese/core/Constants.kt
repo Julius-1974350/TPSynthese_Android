@@ -25,4 +25,8 @@ object Constants {
         Online, Offline
     }
 
+    object RefreshDelay {
+        const val LIST_TICKET = 30000L
+    }
+
 }

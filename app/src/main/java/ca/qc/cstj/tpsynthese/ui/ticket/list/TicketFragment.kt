@@ -1,4 +1,4 @@
-package ca.qc.cstj.tpsynthese.ui.ticket
+package ca.qc.cstj.tpsynthese.ui.ticket.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import ca.qc.cstj.tpsynthese.R
 import ca.qc.cstj.tpsynthese.databinding.FragmentHomeBinding
 
-class TicketFragment : Fragment() {
+class TicketFragment : Fragment(R.layout.fragment_list_tickets) {
 
     private var _binding: FragmentHomeBinding? = null
 
