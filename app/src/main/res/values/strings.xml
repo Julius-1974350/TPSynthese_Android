@@ -15,4 +15,5 @@
     <string name="countdown" translatable="false">0</string>
     <string name="countdownMax" translatable="false">/10...</string>
     <string name="copyright" translatable="false">Tenretni - 2023@</string>
+    <string name="txtInstall">Install</string>
 </resources>

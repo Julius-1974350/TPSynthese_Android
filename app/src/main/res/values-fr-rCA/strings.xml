@@ -5,4 +5,5 @@
     <string name="nav_gateways">Passerelles</string>
     <string name="nav_network">Réseau</string>
     <string name="loading">Chargement</string>
+    <string name="txtInstall">Installer</string>
 </resources>
