@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cstj.tpsynthese.domain.models.Ticket
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import ca.qc.cstj.tenretni.core.ColorHelper
 import ca.qc.cstj.tpsynthese.R
 import ca.qc.cstj.tpsynthese.databinding.ItemTicketBinding
 
@@ -35,7 +36,8 @@ class TicketRecyclerViewAdapter(
                 chipPriority.text = ticket.priority
                 chipStatus.text = ticket.status
 
-                // TODO: Modifier la couleur des chips
+                chipPriority.chipBackgroundColor = ColorHelper.ticketPriorityColor(root.context, ticket.priority)
+                chipStatus.chipBackgroundColor = ColorHelper.ticketStatusColor(root.context, ticket.status)
             }
 
         }
