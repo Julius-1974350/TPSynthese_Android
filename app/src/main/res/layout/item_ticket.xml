@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="75dp"
     android:id="@+id/cdvTicket"
+    android:layout_margin="10dp"
     app:cardCornerRadius="10dp"
-    android:layout_margin="8dp"
     app:cardElevation="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +53,6 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="8dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

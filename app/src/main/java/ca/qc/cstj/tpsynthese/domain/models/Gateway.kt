@@ -8,5 +8,8 @@ data class Gateway(
     val serialNumber:String,
     val revision:String,
     val pin:String,
-    val hash:String
+    val hash:String,
+    val customer: Customer,
+    val config: Config,
+    val connection: Connection
 )

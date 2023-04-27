@@ -11,18 +11,18 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DetailTicketViewModel(private val href : String):ViewModel() {
-    private val ticketRespostitory = TicketRepository()
+    private val ticketRepository = TicketRepository()
     private val _detailTicketUIState = MutableStateFlow<DetailTicketUIState>(DetailTicketUIState.Loading)
     val detailTicketUiState = _detailTicketUIState.asStateFlow()
 
     init {
         viewModelScope.launch {
-            ticketRespostitory.retrieveOne(href).collect(){apiResult ->
+            ticketRepository.retrieveOne(href).collect(){ apiResult ->
                 _detailTicketUIState.update {
                     when(apiResult){
                         is ApiResult.Error -> DetailTicketUIState.Error(apiResult.exception)
                         ApiResult.Loading -> DetailTicketUIState.Loading
-                        is ApiResult.Success -> DetailTicketUIState.Success(apiResult.data)
+                        is ApiResult.Success -> DetailTicketUIState.SuccessTicket(apiResult.data)
                     }
                 }
             }

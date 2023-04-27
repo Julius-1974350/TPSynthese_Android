@@ -12,5 +12,6 @@ data class Customer(
     val city:String,
     val country:String,
     val postalCode:String,
-    val phone:String
+    val phone:String,
+    val coordinate: Coordinate,
 )
