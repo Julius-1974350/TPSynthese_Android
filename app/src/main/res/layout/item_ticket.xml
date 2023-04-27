@@ -14,18 +14,6 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txvTicketCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txvTicketCode"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/txvTicketDate"
-            app:layout_constraintEnd_toStartOf="@+id/txvTicketPriority"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Ticket TiCkEt" />
-
-        <TextView
             android:id="@+id/txvTicketDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,29 +25,46 @@
             app:layout_constraintTop_toBottomOf="@+id/txvTicketCode"
             tools:text="2003-05-15 12:45" />
 
-        <TextView
-            android:id="@+id/txvTicketStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txvTicketStatus"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipPriority"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txvTicketPriority"
-            tools:text="Open" />
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txvTicketPriority"
+            android:id="@+id/txvTicketCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txvTicketPriority"
-            app:layout_constraintBottom_toTopOf="@+id/txvTicketStatus"
-            app:layout_constraintEnd_toEndOf="@+id/txvTicketStatus"
-            app:layout_constraintHorizontal_bias="0.545"
-            app:layout_constraintStart_toStartOf="@+id/txvTicketStatus"
+            android:text="@string/txvTicketCode"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/txvTicketDate"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Critical" />
+            tools:text="Ticket TiCkEt" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipStatus"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/chipPriority"
+            app:layout_constraintVertical_bias="1.0"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="286dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
