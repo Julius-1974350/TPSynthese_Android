@@ -16,4 +16,7 @@
     <string name="countdownMax" translatable="false">/10...</string>
     <string name="copyright" translatable="false">Tenretni - 2023@</string>
     <string name="txtInstall">Install</string>
+    <string name="missing_permission">Missing Permission</string>
+    <string name="user_canceled">Cancel</string>
+    <string name="qr_success">Gateway was install successfully</string>
 </resources>
