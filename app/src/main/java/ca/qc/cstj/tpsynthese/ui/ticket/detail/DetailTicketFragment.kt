@@ -41,7 +41,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                     binding.txvAdress.text = it.ticket.customer.address
                     binding.txvCity.text = it.ticket.customer.city
                     Glide.with(requireContext())
-                        .load(Constants.FLAG_API_URL.format(it.ticket.customer.country.lowercase()))
+                        .load(Constants.FLAG_API_URL.format(it.ticket.customer.country?.lowercase()))
                         .into(binding.imvCountry)
                 }
                 is DetailTicketUIState.SuccessGateways -> TODO()
