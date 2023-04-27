@@ -1,4 +1,4 @@
-package ca.qc.cstj.tpsynthese.ui.ticket
+package ca.qc.cstj.tpsynthese.ui.ticket.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ca.qc.cstj.tpsynthese.databinding.FragmentTicketBinding
+import ca.qc.cstj.tpsynthese.R
 
-class TicketFragment : Fragment() {
+class TicketFragment : Fragment(R.layout.fragment_list_tickets) {
 
     private var _binding: FragmentTicketBinding? = null
 
@@ -29,9 +30,6 @@ class TicketFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textTicket
-        ticketViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 

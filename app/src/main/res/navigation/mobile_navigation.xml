@@ -7,9 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_ticket"
-        android:name="ca.qc.cstj.tpsynthese.ui.ticket.TicketFragment"
+        android:name="ca.qc.cstj.tpsynthese.ui.ticket.list.TicketFragment"
         android:label="@string/nav_tickets"
-        tools:layout="@layout/fragment_ticket" />
+        tools:layout="@layout/fragment_ticket" >
+        <action
+            android:id="@+id/action_navigation_ticket_to_detailTicketFragment"
+            app:destination="@id/detailTicketFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_gateway"
@@ -27,4 +31,13 @@
         android:name="ca.qc.cstj.tpsynthese.ui.loading.LoadingActivity"
         android:label="activity_loading"
         tools:layout="@layout/activity_loading" />
+    <fragment
+        android:id="@+id/detailTicketFragment"
+        tools:layout="@layout/fragment_detail_ticket"
+        android:name="ca.qc.cstj.tpsynthese.ui.ticket.detail.DetailTicketFragment"
+        android:label="DetailTicketFragment" >
+        <argument
+            android:name="href"
+            app:argType="string" />
+    </fragment>
 </navigation>
