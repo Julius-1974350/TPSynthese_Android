@@ -6,4 +6,6 @@
     <string name="nav_network">Réseau</string>
     <string name="loading">Chargement</string>
     <string name="txtInstall">Installer</string>
+    <string name="solve">Résoudre</string>
+    <string name="button_location">Location</string>
 </resources>

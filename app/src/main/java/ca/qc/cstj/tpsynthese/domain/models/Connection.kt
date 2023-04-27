@@ -10,5 +10,4 @@ data class Connection(
     val upload:Float,
     val signal:Int,
     val ping:Int
-
 )

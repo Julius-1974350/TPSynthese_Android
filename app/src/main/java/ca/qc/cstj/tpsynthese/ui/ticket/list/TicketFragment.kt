@@ -29,7 +29,7 @@ class TicketFragment : Fragment(R.layout.fragment_list_tickets) {
         _binding = FragmentTicketBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textTicket
+       // val textView: TextView = binding.textTicket
         return root
     }
 

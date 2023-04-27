@@ -8,5 +8,6 @@ data class Ticket(
     val ticketNumber:String,
     val createdDate:String,
     val priority:String,
-    val status:String
+    val status:String,
+    val customer: Customer
 )
