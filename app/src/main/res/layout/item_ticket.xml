@@ -26,7 +26,7 @@
             tools:text="2003-05-15 12:45" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chipStatusDetail"
+            android:id="@+id/chipDetail"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:textAlignment="center"
@@ -55,7 +55,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/chipStatusDetail"
+            app:layout_constraintTop_toBottomOf="@+id/chipDetail"
             app:layout_constraintVertical_bias="1.0"
             />
 
