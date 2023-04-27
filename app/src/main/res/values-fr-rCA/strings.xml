@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TPSynthese</string>
+    <string name="title_activity_maps">Carte</string>
     <string name="nav_tickets">Billets</string>
     <string name="nav_gateways">Passerelles</string>
     <string name="nav_network">Réseau</string>

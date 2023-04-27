@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TPSynthese</string>
+    <string name="title_activity_maps">Map</string>
     <string name="nav_tickets">Tickets</string>
     <string name="nav_gateways">Gateways</string>
     <string name="nav_network">Network</string>
