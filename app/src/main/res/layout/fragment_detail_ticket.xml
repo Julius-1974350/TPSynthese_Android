@@ -22,4 +22,11 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <Button
+        android:id="@+id/btnInstall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtInstall"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="192dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
