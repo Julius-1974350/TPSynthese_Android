@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
         android:layout_width="156dp"
-        android:layout_height="130dp"
+        android:layout_height="135dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,18 +48,21 @@
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="24dp"
                 android:drawableLeft="@drawable/ic_outline_cloud_download_24"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txvPing" />
+
             <TextView
-                android:drawableLeft="@drawable/ic_outline_cloud_upload_24"
-                android:textAlignment="center"
                 android:id="@+id/txvUpload"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:drawableLeft="@drawable/ic_outline_cloud_upload_24"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@+id/txvDownload"
                 app:layout_constraintStart_toStartOf="@+id/txvDownload"
                 app:layout_constraintTop_toBottomOf="@+id/txvDownload" />
@@ -68,11 +71,24 @@
                 android:id="@+id/txvSerialNumber"
                 android:layout_width="0dp"
                 android:layout_height="15dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@+id/txvUpload"
                 app:layout_constraintStart_toStartOf="@+id/txvUpload"
                 app:layout_constraintTop_toBottomOf="@+id/txvUpload" />
+
+            <TextView
+                android:id="@+id/txvNA"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:paddingTop="15dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="N/A"
+                app:layout_constraintBottom_toTopOf="@+id/txvSerialNumber"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chipStatusDetail" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

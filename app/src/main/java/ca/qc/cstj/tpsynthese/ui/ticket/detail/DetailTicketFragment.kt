@@ -51,6 +51,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                 }
                 DetailTicketUIState.Loading -> Unit
                 is DetailTicketUIState.SuccessTicket -> {
+                     //TODO : Change the title // getString(R.string.txvTicketCode,it.ticket.ticketNumber)
                     // Add data into the ticket item
                     binding.ItemDetailTicket.txvTicketCode.text = getString(R.string.txvTicketCode, it.ticket.ticketNumber)
                     binding.ItemDetailTicket.txvTicketDate.text = it.ticket.createdDate
