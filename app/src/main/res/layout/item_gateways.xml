@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
         android:layout_width="156dp"
-        android:layout_height="124dp"
+        android:layout_height="130dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,6 +21,7 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipStatusDetail"
                 android:layout_width="0dp"
+                android:textColor="@color/white"
                 android:layout_height="40dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
@@ -30,7 +31,8 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txvInternetSpeed"
+                android:textAlignment="center"
+                android:id="@+id/txvPing"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="24dp"
@@ -40,13 +42,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/chipStatusDetail" />
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/txvDownload"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/txvInternetSpeed"
-                app:layout_constraintStart_toStartOf="@+id/txvInternetSpeed"
-                app:layout_constraintTop_toBottomOf="@+id/txvInternetSpeed" />
+                app:layout_constraintEnd_toEndOf="@+id/txvPing"
+                app:layout_constraintStart_toStartOf="@+id/txvPing"
+                app:layout_constraintTop_toBottomOf="@+id/txvPing" />
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/txvUpload"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
@@ -55,6 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txvDownload" />
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/txvSerialNumber"
                 android:layout_width="0dp"
                 android:layout_height="10dp"
