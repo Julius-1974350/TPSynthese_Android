@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class Config(
     val mac:String,
     val SSID:String,
-    val version:Float,
+    val version:String,
     val kernel : List<String>,
-    val kernelRevision: String
+    val kernelRevision: Int
 )
