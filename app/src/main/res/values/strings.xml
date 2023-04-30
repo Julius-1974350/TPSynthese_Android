@@ -11,6 +11,8 @@
     <string name="txvTicketPriority"></string>
     <string name="txvTicketDate"></string>
     <string name="txvTicketCode">Ticket %s</string>
+    <string name="txvPing">%s ns</string>
+    <string name="txvUploadDownload">%s ebps</string>
     <string name="txvTicketStatus"></string>
     <string name="loading">Loading </string>
     <string name="countdown" translatable="false">0</string>

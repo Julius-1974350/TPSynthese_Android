@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cstj.tenretni.core.ColorHelper
+import ca.qc.cstj.tpsynthese.R
 import ca.qc.cstj.tpsynthese.databinding.ItemGatewaysBinding
 import ca.qc.cstj.tpsynthese.domain.models.Gateway
 
@@ -29,9 +30,9 @@ class DetailTicketRecyclerViewAdapter (
             with(binding){
                 chipStatusDetail.text = gateway.connection.status
                 chipStatusDetail.chipBackgroundColor = ColorHelper.connectionStatusColor(root.context, gateway.connection.status)
-                txvPing.text = gateway.connection.ping.toString()
-                txvDownload.text = gateway.connection.download.toString()
-                txvUpload.text = gateway.connection.upload.toString()
+                txvPing.text = root.context.getString(R.string.txvPing,gateway.connection.ping.toString())
+                txvDownload.text = root.context.getString(R.string.txvUploadDownload, gateway.connection.download.toString())
+                txvUpload.text = root.context.getString(R.string.txvUploadDownload, gateway.connection.upload.toString())
                 txvSerialNumber.text = gateway.serialNumber
             }
         }
