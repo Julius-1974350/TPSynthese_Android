@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -53,6 +54,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                 is DetailTicketUIState.SuccessTicket -> {
                      //TODO : Change the title // getString(R.string.txvTicketCode,it.ticket.ticketNumber)
                     // Add data into the ticket item
+                    (requireActivity() as AppCompatActivity).supportActionBar?.title = "Ticket " + it.ticket.ticketNumber
                     binding.ItemDetailTicket.txvTicketCode.text = getString(R.string.txvTicketCode, it.ticket.ticketNumber)
                     binding.ItemDetailTicket.txvTicketDate.text = it.ticket.createdDate
                     binding.ItemDetailTicket.chipPriority.text = it.ticket.priority
