@@ -1,7 +1,7 @@
 package ca.qc.cstj.tpsynthese.ui.ticket.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
@@ -19,17 +19,9 @@ import ca.qc.cstj.tpsynthese.domain.models.Gateway
 import io.github.g00fy2.quickie.QRResult
 import io.github.g00fy2.quickie.ScanQRCode
 import kotlinx.coroutines.flow.launchIn
-import ca.qc.cstj.tpsynthese.R
-import ca.qc.cstj.tpsynthese.databinding.FragmentDetailTicketBinding
-import ca.qc.cstj.tpsynthese.domain.models.Gateway
-import ca.qc.cstj.tpsynthese.domain.models.Ticket
-import ca.qc.cstj.tpsynthese.ui.ticket.list.TicketFragmentDirections
-import ca.qc.cstj.tpsynthese.ui.ticket.list.TicketRecyclerViewAdapter
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import androidx.navigation.fragment.findNavController
-import java.io.Console
 
 class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     private val binding:FragmentDetailTicketBinding by viewBinding()
@@ -38,20 +30,21 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     private val viewModel: DetailTicketViewModel by viewModels {
         DetailTicketViewModel.Factory(args.href)
     }
+    private var hrefCustomer: String = ""
     private val scanQRCode = registerForActivityResult(ScanQRCode(), ::handleQRResult)
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnInstall.setOnClickListener {
-            scanQRCode.launch(null)
-        }
 
         DetailTicketRecyclerViewAdapter = DetailTicketRecyclerViewAdapter(listOf(), ::onRecyclerViewGatewayClick)
         binding.rcvGateways.apply {
             layoutManager = GridLayoutManager(requireContext(),2)
             adapter = DetailTicketRecyclerViewAdapter
         }
-
+        binding.btnInstall.setOnClickListener {
+            scanQRCode.launch(null)
+        }
         viewModel.detailTicketUiState.onEach {
             when(it){
                 is DetailTicketUIState.Error -> {
@@ -62,6 +55,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                 is DetailTicketUIState.SuccessTicket -> {
                      //TODO : Change the title // getString(R.string.txvTicketCode,it.ticket.ticketNumber)
                     // Add data into the ticket item
+                    hrefCustomer = it.ticket.customer.href
                     (requireActivity() as AppCompatActivity).supportActionBar?.title = "Ticket " + it.ticket.ticketNumber
                     binding.ItemDetailTicket.txvTicketCode.text = getString(R.string.txvTicketCode, it.ticket.ticketNumber)
                     binding.ItemDetailTicket.txvTicketDate.text = it.ticket.createdDate
@@ -80,26 +74,30 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
 
                     // get the gateways of the customer
                     viewModel.getGateways(it.ticket.customer);
+
                 }
                 is DetailTicketUIState.SuccessGateways -> {
                     DetailTicketRecyclerViewAdapter.gateways = it.gateways
                     DetailTicketRecyclerViewAdapter.notifyDataSetChanged()
                 }
                 is DetailTicketUIState.GatewayInstallError -> Toast.makeText(requireContext(), it.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
-                is DetailTicketUIState.GatewayInstallSuccess -> Toast.makeText(requireContext(), "Gateway was install successfully", Toast.LENGTH_SHORT).show()
+                is DetailTicketUIState.GatewayInstallSuccess -> {
+                    DetailTicketRecyclerViewAdapter.gateways = it.gateways
+                    DetailTicketRecyclerViewAdapter.notifyDataSetChanged()
+                    Toast.makeText(requireContext(), R.string.qr_success, Toast.LENGTH_SHORT).show()
+                }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
     private fun handleQRResult(qrResult: QRResult) {
         when(qrResult) {
             is QRResult.QRSuccess -> {
-                viewModel.addGateway(qrResult.content.rawValue)
+                viewModel.addGateway(qrResult.content.rawValue, hrefCustomer)
             }
             QRResult.QRUserCanceled -> Toast.makeText(requireContext(),getString(R.string.user_canceled), Toast.LENGTH_SHORT).show()
             QRResult.QRMissingPermission -> Toast.makeText(requireContext(),getString(R.string.missing_permission), Toast.LENGTH_SHORT).show()
             is QRResult.QRError -> Toast.makeText(requireContext(),qrResult.exception.localizedMessage, Toast.LENGTH_SHORT).show()
         }
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
     private fun onRecyclerViewGatewayClick(gateway: Gateway) {
         // TODO : Make navigation

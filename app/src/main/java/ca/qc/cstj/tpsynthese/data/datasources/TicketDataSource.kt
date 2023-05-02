@@ -18,7 +18,7 @@ class TicketDataSource:JsonDataSource() {
         }
     }
     fun retrieveAll(): List<Ticket> {
-        val (_,_,result) = Constants.BaseURL.TICKETS.httpGet().responseJson()
+        val (_,_,result) = (Constants.BaseURL.BASE_API + Constants.BaseURL.TICKETS).httpGet().responseJson()
 
         return when (result) {
             is Result.Success -> json.decodeFromString(result.value.content)

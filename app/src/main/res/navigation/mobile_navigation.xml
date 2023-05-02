@@ -17,9 +17,15 @@
 
     <fragment
         android:id="@+id/navigation_gateway"
-        android:name="ca.qc.cstj.tpsynthese.ui.gateway.GatewayFragment"
+        android:name="ca.qc.cstj.tpsynthese.ui.gateway.list.GatewayFragment"
         android:label="@string/nav_gateways"
-        tools:layout="@layout/fragment_gateway" />
+        tools:layout="@layout/fragment_gateway" >
+        <action
+            android:id="@+id/action_navigation_gateway_to_detailGatewayFragment"
+            app:destination="@id/detailGatewayFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_network"
@@ -52,4 +58,13 @@
             android:name="coordinate"
             app:argType="com.google.android.gms.maps.model.LatLng" />
     </activity>
+    <fragment
+        android:id="@+id/detailGatewayFragment"
+        android:name="ca.qc.cstj.tpsynthese.detailGatewayFragment"
+        android:label="fragment_detail_gateway"
+        tools:layout="@layout/fragment_detail_gateway" >
+        <argument
+            android:name="href"
+            app:argType="string" />
+    </fragment>
 </navigation>
