@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import ca.qc.cstj.tenretni.core.DateHelper
 import ca.qc.cstj.tpsynthese.R
 import ca.qc.cstj.tpsynthese.databinding.FragmentNetworkBinding
 import ca.qc.cstj.tpsynthese.domain.models.Network
@@ -53,9 +54,8 @@ class NetworkFragment : Fragment(R.layout.fragment_network) {
                     binding.rcvNetworks.visibility = View.GONE
                 }
                 is ListNetworkUIState.Success -> {
-                    // TODO : date format
-                    binding.txvLstUpt.text = "Last Update: ${it.network.updateDate.format()}"
-                    binding.txvNxtReboot.text = "Next Reboot at: ${it.network.nextReboot}"
+                    binding.txvLstUpt.text = "Last Update: ${DateHelper.formatISODate(it.network.updateDate)}"
+                    binding.txvNxtReboot.text = "Next Reboot at: ${DateHelper.formatISODate(it.network.nextReboot)}"
                     binding.rcvNetworks.visibility = View.VISIBLE
                     networkRecyclerViewAdapter.network = it.network
                     networkRecyclerViewAdapter.notifyDataSetChanged()
