@@ -21,6 +21,7 @@ class DetailTicketViewModel(private val href : String):ViewModel() {
     private val ticketRepository = TicketRepository()
     private val gatewayRepository = GatewayRepository()
     private val _detailTicketUIState = MutableStateFlow<DetailTicketUIState>(DetailTicketUIState.Loading)
+    private var gateways = mutableListOf<Gateway>()
     val detailTicketUiState = _detailTicketUIState.asStateFlow()
 
     init {

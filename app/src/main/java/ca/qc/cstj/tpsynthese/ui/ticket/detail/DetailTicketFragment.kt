@@ -2,7 +2,6 @@ package ca.qc.cstj.tpsynthese.ui.ticket.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
@@ -10,14 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import ca.qc.cstj.tpsynthese.R
 import ca.qc.cstj.tpsynthese.databinding.FragmentDetailTicketBinding
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import ca.qc.cstj.tenretni.core.ColorHelper
 import ca.qc.cstj.tenretni.core.Constants
-import ca.qc.cstj.tpsynthese.R
-import ca.qc.cstj.tpsynthese.databinding.FragmentDetailTicketBinding
 import ca.qc.cstj.tpsynthese.domain.models.Customer
 import ca.qc.cstj.tpsynthese.domain.models.Gateway
 import io.github.g00fy2.quickie.QRResult
@@ -25,9 +23,7 @@ import io.github.g00fy2.quickie.ScanQRCode
 import kotlinx.coroutines.flow.launchIn
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.model.LatLng
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.io.Console
 
 class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     private val binding:FragmentDetailTicketBinding by viewBinding()
