@@ -38,4 +38,25 @@ class TicketRepository {
         }.flowOn(Dispatchers.IO)
     }
 
+    fun postSolveOne(href: String) : Flow<ApiResult<Ticket>> {
+        return flow<ApiResult<Ticket>> {
+            emit(ApiResult.Loading)
+            try {
+                emit(ApiResult.Success(ticketDataSource.postSolveOne(href)))
+            } catch (ex:Exception) {
+                emit(ApiResult.Error(ex))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    fun postOpenOne(href: String) : Flow<ApiResult<Ticket>> {
+        return flow<ApiResult<Ticket>> {
+            emit(ApiResult.Loading)
+            try {
+                emit(ApiResult.Success(ticketDataSource.postOpenOne(href)))
+            } catch (ex:Exception) {
+                emit(ApiResult.Error(ex))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }

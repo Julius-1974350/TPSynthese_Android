@@ -2,6 +2,7 @@ package ca.qc.cstj.tpsynthese.ui.ticket.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
@@ -15,13 +16,18 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import ca.qc.cstj.tenretni.core.ColorHelper
 import ca.qc.cstj.tenretni.core.Constants
+import ca.qc.cstj.tpsynthese.R
+import ca.qc.cstj.tpsynthese.databinding.FragmentDetailTicketBinding
+import ca.qc.cstj.tpsynthese.domain.models.Customer
 import ca.qc.cstj.tpsynthese.domain.models.Gateway
 import io.github.g00fy2.quickie.QRResult
 import io.github.g00fy2.quickie.ScanQRCode
 import kotlinx.coroutines.flow.launchIn
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.io.Console
 
 class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     private val binding:FragmentDetailTicketBinding by viewBinding()
@@ -30,6 +36,8 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     private val viewModel: DetailTicketViewModel by viewModels {
         DetailTicketViewModel.Factory(args.href)
     }
+    private var position : LatLng? = null
+    private var username = ""
     private var hrefCustomer: String = ""
     private val scanQRCode = registerForActivityResult(ScanQRCode(), ::handleQRResult)
 
@@ -72,9 +80,23 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                         .load(Constants.FLAG_API_URL.format(it.ticket.customer.country?.lowercase()))
                         .into(binding.imvCountry)
 
+                    // get args coodinate and username for the map
+                    getUserInfoMap(it.ticket.customer)
                     // get the gateways of the customer
                     viewModel.getGateways(it.ticket.customer);
 
+
+                    // Hide and Show the button depent by the initial status
+                    if (it.ticket.status == "Solved")
+                    {
+                        binding.btnOpen.visibility = View.VISIBLE
+                        binding.btnSolve.visibility = View.GONE
+                        binding.btnInstall.visibility = View.GONE
+                    } else if (it.ticket.status == "Open") {
+                        binding.btnOpen.visibility = View.GONE
+                        binding.btnSolve.visibility = View.VISIBLE
+                        binding.btnInstall.visibility = View.VISIBLE
+                    }
                 }
                 is DetailTicketUIState.SuccessGateways -> {
                     DetailTicketRecyclerViewAdapter.gateways = it.gateways
@@ -88,6 +110,24 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+        // Button Map
+        binding.fabLocation.setOnClickListener {
+            if (position != null) {
+                val action = DetailTicketFragmentDirections.actionDetailTicketFragmentToMapsActivity(position!!, username)
+                findNavController().navigate(action)
+            }
+        }
+        // Button Solve
+        binding.btnSolve.setOnClickListener {
+            viewModel.solveTicket()
+            // TODO: Hide the solve and install button and show the open button
+        }
+        // Button Open
+        binding.btnOpen.setOnClickListener {
+            viewModel.openTicket()
+            // TODO: Show solve and install button and hide Open
+        }
+
     }
     private fun handleQRResult(qrResult: QRResult) {
         when(qrResult) {
@@ -103,6 +143,15 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
         // TODO : Make navigation
         // val action = TicketFragmentDirections.actionNavigationTicketToDetailTicketFragment(gateway.href)
         // findNavController().navigate(action)
+    }
+
+    private fun getUserInfoMap(customer: Customer)
+    {
+        if (customer.coord != null)
+        {
+            position = LatLng(customer.coord.latitude.toDouble(), customer.coord.longitude.toDouble())
+            username = customer.firstName + " " + customer.lastName
+        }
     }
 
 }
