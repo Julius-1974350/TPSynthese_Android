@@ -1,40 +1,57 @@
 package ca.qc.cstj.tpsynthese.ui.ticket.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import ca.qc.cstj.tpsynthese.databinding.FragmentTicketBinding
+import android.viewbinding.library.fragment.viewBinding
+import androidx.navigation.fragment.findNavController
 import ca.qc.cstj.tpsynthese.R
+import ca.qc.cstj.tpsynthese.domain.models.Ticket
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
-class TicketFragment : Fragment(R.layout.fragment_list_tickets) {
+class TicketFragment : Fragment(R.layout.fragment_ticket) {
 
-    private var _binding: FragmentTicketBinding? = null
+    private val binding: FragmentTicketBinding by viewBinding()
+    private val viewModel: TicketViewModel by viewModels()
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var ticketRecyclerViewAdapter: TicketRecyclerViewAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val ticketViewModel =
-            ViewModelProvider(this).get(TicketViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        _binding = FragmentTicketBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        ticketRecyclerViewAdapter = TicketRecyclerViewAdapter(listOf(), ::onRecyclerViewTicketClick)
 
-        val textView: TextView = binding.textTicket
-        return root
+        binding.rxcTickets.apply {
+            layoutManager = GridLayoutManager(requireContext(), 1)
+            adapter = ticketRecyclerViewAdapter
+        }
+
+        viewModel.ticketUiState.onEach {
+            when(it) {
+                is TicketUiState.Error -> {
+                    Toast.makeText(requireContext(), it.exception?.localizedMessage ?: getString(R.string.apiErrorMessage), Toast.LENGTH_SHORT).show()
+                }
+                TicketUiState.Loading -> {
+                    binding.rxcTickets.visibility = View.GONE
+                }
+                is TicketUiState.Success -> {
+                    binding.rxcTickets.visibility = View.VISIBLE
+                    ticketRecyclerViewAdapter.tickets = it.ticket
+                    ticketRecyclerViewAdapter.notifyDataSetChanged()
+                }
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun onRecyclerViewTicketClick(ticket: Ticket) {
+        val action = TicketFragmentDirections.actionNavigationTicketToDetailTicketFragment(ticket.href)
+        findNavController().navigate(action)
     }
 }

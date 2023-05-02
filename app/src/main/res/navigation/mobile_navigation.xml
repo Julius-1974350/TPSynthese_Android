@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_network">
+    app:startDestination="@id/navigation_ticket">
 
     <fragment
         android:id="@+id/navigation_ticket"
@@ -39,5 +39,17 @@
         <argument
             android:name="href"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailTicketFragment_to_mapsActivity"
+            app:destination="@id/mapsActivity" />
     </fragment>
+    <activity
+        android:id="@+id/mapsActivity"
+        android:name="ca.qc.cstj.tpsynthese.ui.maps.MapsActivity"
+        android:label="activity_maps"
+        tools:layout="@layout/activity_maps" >
+        <argument
+            android:name="coordinate"
+            app:argType="com.google.android.gms.maps.model.LatLng" />
+    </activity>
 </navigation>

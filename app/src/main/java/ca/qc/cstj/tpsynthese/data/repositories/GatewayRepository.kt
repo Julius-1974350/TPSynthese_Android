@@ -6,6 +6,11 @@ import ca.qc.cstj.tpsynthese.data.datasources.GatewayDataSource
 import ca.qc.cstj.tpsynthese.domain.models.Gateway
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import ca.qc.cstj.tpsynthese.data.datasources.GatewayDataSource
+import ca.qc.cstj.tpsynthese.data.datasources.TicketDataSource
+import ca.qc.cstj.tpsynthese.domain.models.Gateway
+import ca.qc.cstj.tpsynthese.domain.models.Ticket
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -13,16 +18,13 @@ import kotlinx.coroutines.flow.flowOn
 class GatewayRepository {
     private val gatewayDataSource = GatewayDataSource()
 
-    fun retrieveAll(customerId: Int) : Flow<ApiResult<List<Gateway>>> {
+    fun retrieveAll(href: String) : Flow<ApiResult<List<Gateway>>> {
         return flow {
-            while(true) {
-                emit(ApiResult.Loading)
-                try {
-                    emit(ApiResult.Success(gatewayDataSource.retrieveAll(customerId)))
-                } catch (ex:Exception) {
-                    emit(ApiResult.Error(ex))
-                }
-                delay(Constants.RefreshDelay.LIST_GATEWAYS)
+            emit(ApiResult.Loading)
+            try {
+                emit(ApiResult.Success(gatewayDataSource.retrieveAll(href)))
+            }catch (ex:Exception){
+                emit(ApiResult.Error(ex))
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -47,5 +49,8 @@ class GatewayRepository {
             }
         }.flowOn(Dispatchers.IO)
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 }

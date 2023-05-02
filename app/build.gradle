@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.0'
     id 'kotlin-kapt'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'androidx.navigation.safeargs'
 }
 
@@ -62,4 +63,9 @@ dependencies {
     implementation 'io.github.g00fy2.quickie:quickie-bundled:1.4.1'
     implementation 'com.github.kittinunf.fuel:fuel-android:2.3.1'
     implementation 'com.github.kittinunf.fuel:fuel-json:2.3.1'
+
+    // Pour le map
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.github.fondesa:kpermissions:3.4.0'
 }

@@ -5,12 +5,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Customer(
     val href:String,
-    val firstName:String,
-    val lastName:String,
-    val email:String,
-    val address:String,
-    val city:String,
-    val country:String,
-    val postalCode:String,
-    val phone:String
+    val firstName: String? = null,
+    val lastName:String? = null,
+    val email:String? = null,
+    val address:String? = null,
+    val city:String? = null,
+    val country:String? = null,
+    val postalCode:String? = null,
+    val phone:String? = null,
+    val coordinate: Coordinate? = null,
 )
