@@ -37,11 +37,15 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     private var username = ""
     private var hrefCustomer: String = ""
     private val scanQRCode = registerForActivityResult(ScanQRCode(), ::handleQRResult)
-
-    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+        onResume()
+    }
+    override fun onResume() {
+        super.onResume()
+        showTicket()
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun showTicket() {
         DetailTicketRecyclerViewAdapter = DetailTicketRecyclerViewAdapter(listOf(), ::onRecyclerViewGatewayClick)
         binding.rcvGateways.apply {
             layoutManager = GridLayoutManager(requireContext(),2)
