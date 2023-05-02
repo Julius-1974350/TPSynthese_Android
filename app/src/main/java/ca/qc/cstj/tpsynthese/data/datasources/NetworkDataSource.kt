@@ -10,7 +10,7 @@ import kotlinx.serialization.decodeFromString
 
 class NetworkDataSource:JsonDataSource() {
     fun retrieveNetwork(): Network {
-        val (_,_,result) = "${Constants.BaseURL}${Constants.BaseURL.NETWORK}".httpGet().responseJson()
+        val (_,_,result) = "${Constants.BaseURL.BASE_API}${Constants.BaseURL.NETWORK}".httpGet().responseJson()
 
         return when (result) {
             is Result.Success -> json.decodeFromString(result.value.content)
