@@ -51,5 +51,8 @@
         <argument
             android:name="coordinate"
             app:argType="com.google.android.gms.maps.model.LatLng" />
+        <argument
+            android:name="username"
+            app:argType="string" />
     </activity>
 </navigation>

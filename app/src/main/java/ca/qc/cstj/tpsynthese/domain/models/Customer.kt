@@ -13,5 +13,5 @@ data class Customer(
     val country:String? = null,
     val postalCode:String? = null,
     val phone:String? = null,
-    val coordinate: Coordinate? = null,
+    val coord: Coordinate? = null,
 )
