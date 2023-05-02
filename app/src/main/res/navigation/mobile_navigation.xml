@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/navigation_network"
-        android:name="ca.qc.cstj.tpsynthese.ui.network.NetworkFragment"
+        android:name="ca.qc.cstj.tpsynthese.ui.network.list.NetworkFragment"
         android:label="@string/nav_network"
         tools:layout="@layout/fragment_network" />
     <activity

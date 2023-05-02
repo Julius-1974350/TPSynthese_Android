@@ -33,6 +33,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     private val viewModel: DetailTicketViewModel by viewModels {
         DetailTicketViewModel.Factory(args.href)
     }
+
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,7 +47,6 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
         viewModel.detailTicketUiState.onEach {
             when(it){
                 is DetailTicketUIState.Error -> {
-                    Log.e("Test",it.exception.toString())
                     Toast.makeText(requireContext(), it.exception?.localizedMessage ?: getString(R.string.apiErrorMessage), Toast.LENGTH_SHORT).show()
                     requireActivity().supportFragmentManager.popBackStack()
                 }
@@ -54,7 +54,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                 is DetailTicketUIState.SuccessTicket -> {
                      //TODO : Change the title // getString(R.string.txvTicketCode,it.ticket.ticketNumber)
                     // Add data into the ticket item
-                    (requireActivity() as AppCompatActivity).supportActionBar?.title = "Ticket " + it.ticket.ticketNumber
+                    (requireActivity() as AppCompatActivity).supportActionBar?.title = "Ticket ${it.ticket.ticketNumber}"
                     binding.ItemDetailTicket.txvTicketCode.text = getString(R.string.txvTicketCode, it.ticket.ticketNumber)
                     binding.ItemDetailTicket.txvTicketDate.text = it.ticket.createdDate
                     binding.ItemDetailTicket.chipPriority.text = it.ticket.priority
@@ -63,7 +63,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                     binding.ItemDetailTicket.chipPriority.chipBackgroundColor = ColorHelper.ticketPriorityColor(requireContext(),it.ticket.priority)
 
                     // Customer data
-                    binding.txvName.text = it.ticket.customer.firstName + it.ticket.customer.lastName
+                    binding.txvName.text = "${it.ticket.customer.firstName}  ${it.ticket.customer.lastName}"
                     binding.txvAdress.text = it.ticket.customer.address
                     binding.txvCity.text = it.ticket.customer.city
                     Glide.with(requireContext())
@@ -71,7 +71,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                         .into(binding.imvCountry)
 
                     // get the gateways of the customer
-                    viewModel.getGateways(it.ticket.customer);
+                    viewModel.getGateways(it.ticket.customer)
                 }
                 is DetailTicketUIState.SuccessGateways -> {
                     DetailTicketRecyclerViewAdapter.gateways = it.gateways

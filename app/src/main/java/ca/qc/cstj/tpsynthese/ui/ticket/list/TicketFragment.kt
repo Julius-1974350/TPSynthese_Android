@@ -1,6 +1,7 @@
 package ca.qc.cstj.tpsynthese.ui.ticket.list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -35,6 +36,7 @@ class TicketFragment : Fragment(R.layout.fragment_ticket) {
         viewModel.ticketUiState.onEach {
             when(it) {
                 is TicketUiState.Error -> {
+                    Log.e("Test",it.exception.toString())
                     Toast.makeText(requireContext(), it.exception?.localizedMessage ?: getString(R.string.apiErrorMessage), Toast.LENGTH_SHORT).show()
                 }
                 TicketUiState.Loading -> {
