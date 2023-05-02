@@ -7,5 +7,7 @@ sealed class DetailTicketUIState {
     object Loading:DetailTicketUIState()
     class SuccessTicket(val ticket:Ticket):DetailTicketUIState()
     class SuccessGateways(val gateways:List<Gateway>):DetailTicketUIState()
+    class GatewayInstallSuccess(val gateways:List<Gateway>) : DetailTicketUIState()
+    class GatewayInstallError(val exception: Exception? = null) : DetailTicketUIState()
     class Error(val exception: Exception? = null) : DetailTicketUIState()
 }

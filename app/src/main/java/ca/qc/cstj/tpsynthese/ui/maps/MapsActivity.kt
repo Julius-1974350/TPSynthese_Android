@@ -56,13 +56,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.isMyLocationEnabled = true
         }
 
-        val meteoMarkerOptions = MarkerOptions().position(args.coordinate)
+        val userMarkerOptions = MarkerOptions().position(args.coordinate)
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
-            .title("${args.coordinate.latitude}, ${args.coordinate.longitude}")
+            .title("${args.username}")
 
-        mMap.addMarker(meteoMarkerOptions)
+        mMap.addMarker(userMarkerOptions)
 
-        val cameraPosition = CameraPosition.Builder().target(args.coordinate).zoom(10f).build()
+        val cameraPosition = CameraPosition.Builder().target(args.coordinate).zoom(15f).build()
 
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
 

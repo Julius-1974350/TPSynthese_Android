@@ -59,6 +59,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     //ViewBinding : https://github.com/yogacp/android-viewbinding
     implementation 'com.github.yogacp:android-viewbinding:1.0.4'
+    //https://github.com/G00fY2/quickie
+    implementation 'io.github.g00fy2.quickie:quickie-bundled:1.4.1'
     implementation 'com.github.kittinunf.fuel:fuel-android:2.3.1'
     implementation 'com.github.kittinunf.fuel:fuel-json:2.3.1'
 

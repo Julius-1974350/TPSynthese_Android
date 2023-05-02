@@ -7,6 +7,9 @@
     <string name="nav_network">Réseau</string>
     <string name="loading">Chargement</string>
     <string name="txtInstall">Installer</string>
+    <string name="missing_permission">Permission Manquante</string>
+    <string name="user_canceled">Annulé</string>
+    <string name="qr_success">" La passerelle a été installée avec succès"</string>
     <string name="solve">Résoudre</string>
     <string name="button_location">Location</string>
 </resources>

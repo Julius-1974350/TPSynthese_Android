@@ -1,23 +1,24 @@
-package ca.qc.cstj.tpsynthese.ui.ticket.detail
+package ca.qc.cstj.tpsynthese.ui.gateway.list
 
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ca.qc.cstj.tenretni.core.ColorHelper
-import ca.qc.cstj.tenretni.core.Constants
 import ca.qc.cstj.tpsynthese.R
 import ca.qc.cstj.tpsynthese.databinding.ItemGatewaysBinding
 import ca.qc.cstj.tpsynthese.domain.models.Gateway
+import ca.qc.cstj.tpsynthese.domain.models.Ticket
 
-class DetailTicketRecyclerViewAdapter (
-    var gateways:List<Gateway> = listOf(),
-    private val onGatewayClick:(Gateway)->Unit) : RecyclerView.Adapter<DetailTicketRecyclerViewAdapter.ViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, iewType: Int): ViewHolder {
+class GatewayRecyclerViewAdapter(
+    var gateways: List<Gateway> = listOf(),
+    private val onGatewayClick: (Gateway) -> Unit) : RecyclerView.Adapter<GatewayRecyclerViewAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
         return ViewHolder(ItemGatewaysBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
-    override fun onBindViewHolder(holder: DetailTicketRecyclerViewAdapter.ViewHolder, position: Int) {
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val gateway = gateways[position]
         holder.bind(gateway)
 
@@ -26,16 +27,16 @@ class DetailTicketRecyclerViewAdapter (
         }
     }
 
-    override fun getItemCount(): Int = gateways.size
+    override fun getItemCount() = gateways.size
 
-    inner class ViewHolder(private val binding:ItemGatewaysBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(gateway:Gateway){
-            with(binding){
+    inner class ViewHolder(private val binding: ItemGatewaysBinding): RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(gateway: Gateway)  {
+            with(binding) {
                 chipStatusDetail.text = gateway.connection.status
                 chipStatusDetail.chipBackgroundColor = ColorHelper.connectionStatusColor(root.context, gateway.connection.status)
-                txvSerialNumber.text = gateway.serialNumber
-                if(gateway.connection.status == Constants.ConnectionStatus.Online.toString()){
-                    // TODO : Make a group with the txvPing download and upload
+                if(gateway.connection.status == "Online"){
+                    // TODO : faire un groupe pour ping download et upload
                     txvPing.visibility = View.VISIBLE
                     txvDownload.visibility = View.VISIBLE
                     txvUpload.visibility = View.VISIBLE
@@ -50,6 +51,7 @@ class DetailTicketRecyclerViewAdapter (
                     txvUpload.visibility = View.GONE
                     txvNA.visibility = View.VISIBLE
                 }
+                txvSerialNumber.text = gateway.serialNumber
             }
         }
     }

@@ -21,15 +21,11 @@ class TicketViewModel : ViewModel() {
     val ticketUiState = _ticketUiState.asStateFlow()
 
     init {
-        refreshTickets()
-    }
-
-    fun refreshTickets() {
         viewModelScope.launch {
             ticketRepository.retrieveAll().collect {
                 _ticketUiState.update { _ ->
                     when(it) {
-                        is ApiResult.Error -> TicketUiState.Error(it.exception as Exception)
+                        is ApiResult.Error -> TicketUiState.Error(it.exception)
                         ApiResult.Loading -> TicketUiState.Loading
                         is ApiResult.Success -> TicketUiState.Success(it.data)
                     }
