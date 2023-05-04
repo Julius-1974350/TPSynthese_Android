@@ -15,5 +15,8 @@
     <color name="gateway_status_offline">#FF4757</color>
     <color name="ticket_status_open">#6C5CE7</color>
     <color name="ticket_status_solved">#2D3436</color>
+    <color name="signal_good">#2ECC71</color>
+    <color name="signal_medium">#F39C12</color>
+    <color name="signal_poor">#C0392B</color>
 
 </resources>

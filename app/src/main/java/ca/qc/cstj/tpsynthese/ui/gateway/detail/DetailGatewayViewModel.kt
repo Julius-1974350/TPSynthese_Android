@@ -1,5 +1,6 @@
 package ca.qc.cstj.tpsynthese.ui.gateway.detail
 
+import android.graphics.drawable.Drawable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
