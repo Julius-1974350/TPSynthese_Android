@@ -38,15 +38,17 @@ class GatewayRepository {
         }.flowOn(Dispatchers.IO)
     }
 
-    fun retrieveOne(customerId: Int) : Flow<ApiResult<Gateway>> {
+    fun retrieveOne(href: String) : Flow<ApiResult<Gateway>> {
         return flow {
-            emit(ApiResult.Loading)
-            try {
-                emit(ApiResult.Success(gatewayDataSource.retrieveOne(customerId)))
-            } catch(ex: Exception) {
-                emit(ApiResult.Error(ex))
+            while (true) {
+                emit(ApiResult.Loading)
+                try {
+                    emit(ApiResult.Success(gatewayDataSource.retrieveOne(href)))
+                } catch (ex: Exception) {
+                    emit(ApiResult.Error(ex))
+                }
+                delay(Constants.RefreshDelay.DETAIL_GATEWAY)
             }
-
         }.flowOn(Dispatchers.IO)
     }
     fun create(gateway: String, href: String) : Flow<ApiResult<Gateway>> {
