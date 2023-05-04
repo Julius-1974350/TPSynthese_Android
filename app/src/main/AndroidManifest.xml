@@ -31,6 +31,7 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".ui.loading.LoadingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

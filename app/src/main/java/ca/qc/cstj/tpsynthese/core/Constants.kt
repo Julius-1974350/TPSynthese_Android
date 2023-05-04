@@ -25,7 +25,7 @@ object Constants {
         Online, Offline
     }
     object Delay {
-        const val LOADING_DELAY: Long = 1000L
+        const val LOADING_DELAY: Long = 10000L
     }
 
     object RefreshDelay {

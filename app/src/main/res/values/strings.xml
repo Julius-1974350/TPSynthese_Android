@@ -14,7 +14,7 @@
     <string name="txvPing" translatable="false">%s ns</string>
     <string name="txvUploadDownload" translatable="false">%s ebps</string>
     <string name="txvTicketStatus" translatable="false"></string>
-    <string name="txvSignalQuality">%s dBm</string>
+    <string name="txvSignalQuality" translatable="false">%s dBm</string>
     <string name="loading">Loading </string>
     <string name="countdown" translatable="false">0</string>
     <string name="countdownMax" translatable="false">/10...</string>
