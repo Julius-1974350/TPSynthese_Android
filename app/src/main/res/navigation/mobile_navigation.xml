@@ -63,9 +63,9 @@
     </activity>
     <fragment
         android:id="@+id/detailGatewayFragment"
-        android:name="ca.qc.cstj.tpsynthese.detailGatewayFragment"
-        android:label="fragment_detail_gateway"
-        tools:layout="@layout/fragment_detail_gateway" >
+        android:name="ca.qc.cstj.tpsynthese.ui.gateway.detail.DetailGatewayFragment"
+        android:label="DetailGatewayFragment"
+        tools:layout="@layout/fragment_detail_gateway">
         <argument
             android:name="href"
             app:argType="string" />

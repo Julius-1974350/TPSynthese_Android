@@ -33,6 +33,7 @@ object Constants {
         const val LIST_TICKET = 30000L
         const val LIST_GATEWAYS = 60000L
         const val DETAIL_TICKET = 30000L
+        const val DETAIL_GATEWAY = 60000L
     }
 
 }
