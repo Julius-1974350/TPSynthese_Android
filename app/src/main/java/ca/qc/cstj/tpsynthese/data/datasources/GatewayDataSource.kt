@@ -14,8 +14,8 @@ import kotlinx.serialization.json.encodeToJsonElement
 
 class GatewayDataSource : JsonDataSource() {
 
-    fun retrieveAll(): List<Gateway> {
-        val (_, _, result) = (Constants.BaseURL.BASE_API + Constants.BaseURL.GATEWAYS).httpGet().responseJson()
+    fun retrieveAll(href: String): List<Gateway> {
+        val (_, _, result) = href.httpGet().responseJson()
 
         return when (result) {
             is Result.Success -> json.decodeFromString(result.value.content)

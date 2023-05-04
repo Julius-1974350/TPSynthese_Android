@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ca.qc.cstj.tenretni.core.ApiResult
 import ca.qc.cstj.tpsynthese.data.repositories.GatewayRepository
-import ca.qc.cstj.tpsynthese.ui.gateway.list.GatewayUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

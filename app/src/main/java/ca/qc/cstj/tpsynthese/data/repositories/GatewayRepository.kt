@@ -14,10 +14,11 @@ class GatewayRepository {
     private val gatewayDataSource = GatewayDataSource()
 
     fun retrieveAll() : Flow<ApiResult<List<Gateway>>> {
+        var href = "${Constants.BaseURL.BASE_API}${Constants.BaseURL.GATEWAYS}"
         return flow {
             emit(ApiResult.Loading)
             try {
-                emit(ApiResult.Success(gatewayDataSource.retrieveAll()))
+                emit(ApiResult.Success(gatewayDataSource.retrieveAll(href)))
             }catch (ex:Exception){
                 emit(ApiResult.Error(ex))
             }
