@@ -31,4 +31,16 @@ object ColorHelper {
         }
         return ContextCompat.getColorStateList(context, color)!!
     }
+
+    fun connectionSignalColor(context: Context, signal: Int): ColorStateList {
+        val color = when {
+            signal >= -20 -> R.color.signal_good
+            signal >= -70 -> R.color.signal_medium
+            signal < -70 -> R.color.signal_poor
+            else -> {
+                R.color.black
+            }
+        }
+        return ContextCompat.getColorStateList(context, color)!!
+    }
 }

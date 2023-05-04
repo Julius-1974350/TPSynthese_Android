@@ -36,4 +36,5 @@ object Constants {
         const val DETAIL_GATEWAY = 60000L
     }
 
+    const val NO_FIND = "N/A"
 }

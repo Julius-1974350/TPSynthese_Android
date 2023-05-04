@@ -28,4 +28,9 @@
     <string name="btnOpen">Open</string>
     <string name="btnUpdate">Update</string>
     <string name="btnReboot">Reboot</string>
+    <string name="txvPin">PIN: %s</string>
+    <string name="txvSSID">SSID: %s</string>
+    <string name="txvKernelRevision">Kernel revision %s</string>
+    <string name="txvVersion">Version %s</string>
+
 </resources>
