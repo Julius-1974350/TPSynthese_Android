@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class DetailGatewayViewModel(private val href: String) : ViewModel() {
     private val detailGatewayRepository = GatewayRepository()
 
-    private val _detailGatewayUiState = MutableStateFlow<DetailGatewayUIState>(DetailGatewayUIState.Empty)
+    private val _detailGatewayUiState = MutableStateFlow<DetailGatewayUIState>(DetailGatewayUIState.Loading)
     val detailGatewayUiState = _detailGatewayUiState.asStateFlow()
 
     init {
