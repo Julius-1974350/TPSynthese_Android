@@ -9,6 +9,9 @@ object Constants {
         const val CUSTOMERS = "/customers"
         const val GATEWAYS = "/gateways"
         const val NETWORK = "/network"
+        private const val ACTIONTYPE = "/actions?type="
+        const val TYPEREBOOT = "${ACTIONTYPE}reboot"
+        const val TYPEUPDATE = "${ACTIONTYPE}update"
     }
 
     const val FLAG_API_URL = "https://flagcdn.com/h40/%s.png"

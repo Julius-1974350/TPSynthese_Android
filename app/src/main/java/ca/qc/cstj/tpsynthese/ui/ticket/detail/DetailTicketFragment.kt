@@ -136,7 +136,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
         viewModel.getGateways(ticket.customer);
         // Hide and Show the button depent by the initial status
         // TODO : ask yannick how to check status with constant without a toString()
-        if (ticket.status == Constants.TicketStatus.Open.toString())
+        if (ticket.status == Constants.TicketStatus.Solved.toString())
         {
             binding.btnOpen.visibility = View.VISIBLE
             binding.btnSolve.visibility = View.GONE
