@@ -23,23 +23,27 @@ class DetailTicketViewModel(private val href : String):ViewModel() {
     private val _detailTicketUIState = MutableStateFlow<DetailTicketUIState>(DetailTicketUIState.Loading)
     private var gateways = mutableListOf<Gateway>()
     val detailTicketUiState = _detailTicketUIState.asStateFlow()
+    private var ticket:Ticket = Ticket()
 
-    init {
+    fun retrieveOne(){
         viewModelScope.launch {
             ticketRepository.retrieveOne(href).collect(){ apiResult ->
                 _detailTicketUIState.update {
                     when(apiResult){
                         is ApiResult.Error -> DetailTicketUIState.Error(apiResult.exception)
                         ApiResult.Loading -> DetailTicketUIState.Loading
-                        is ApiResult.Success -> DetailTicketUIState.SuccessTicket(apiResult.data)
+                        is ApiResult.Success ->{
+                            ticket = apiResult.data
+                            DetailTicketUIState.SuccessTicket(ticket)
+                        }
                     }
                 }
             }
         }
     }
-    fun addGateway(rawValue: String, href: String) {
+    fun addGateway(rawValue: String) {
         viewModelScope.launch {
-            gatewayRepository.create(rawValue, href).collect{ apiResult ->
+            gatewayRepository.create(rawValue, ticket.customer.href).collect{ apiResult ->
                 _detailTicketUIState.update {
                     when(apiResult) {
                         is ApiResult.Error -> DetailTicketUIState.GatewayInstallError(apiResult.exception)
@@ -54,9 +58,9 @@ class DetailTicketViewModel(private val href : String):ViewModel() {
             }
         }
     }
-    fun getGateways(customer: Customer){
+    fun getGateways(){
         viewModelScope.launch {
-            gatewayRepository.retrieveAllForCustomer(customer.href).collect(){apiResult->
+            gatewayRepository.retrieveAllForCustomer(ticket.customer.href).collect(){apiResult->
                 _detailTicketUIState.update {
                     when(apiResult){
                         is ApiResult.Error -> DetailTicketUIState.Error(apiResult.exception)

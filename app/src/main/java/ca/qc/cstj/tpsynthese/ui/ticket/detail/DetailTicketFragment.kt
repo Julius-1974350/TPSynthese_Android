@@ -1,6 +1,7 @@
 package ca.qc.cstj.tpsynthese.ui.ticket.detail
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
@@ -35,22 +36,22 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     }
     private var position : LatLng? = null
     private var username = ""
-    private var hrefCustomer: String = ""
     private val scanQRCode = registerForActivityResult(ScanQRCode(), ::handleQRResult)
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        onResume()
-    }
-    override fun onResume() {
-        super.onResume()
-        showTicket()
-    }
-    @SuppressLint("NotifyDataSetChanged")
-    private fun showTicket() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         DetailTicketRecyclerViewAdapter = DetailTicketRecyclerViewAdapter(listOf(), ::onRecyclerViewGatewayClick)
         binding.rcvGateways.apply {
             layoutManager = GridLayoutManager(requireContext(),2)
             adapter = DetailTicketRecyclerViewAdapter
         }
+        onResume()
+    }
+
+    // Each time we resume the fragment we recall the api
+    // TODO : find a better way
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onResume() {
+        super.onResume()
+        viewModel.retrieveOne()
         viewModel.detailTicketUiState.onEach {
             when(it){
                 is DetailTicketUIState.Error -> {
@@ -98,7 +99,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     private fun handleQRResult(qrResult: QRResult) {
         when(qrResult) {
             is QRResult.QRSuccess -> {
-                viewModel.addGateway(qrResult.content.rawValue, hrefCustomer)
+                viewModel.addGateway(qrResult.content.rawValue)
             }
             QRResult.QRUserCanceled -> Toast.makeText(requireContext(),getString(R.string.user_canceled), Toast.LENGTH_SHORT).show()
             QRResult.QRMissingPermission -> Toast.makeText(requireContext(),getString(R.string.missing_permission), Toast.LENGTH_SHORT).show()
@@ -115,7 +116,6 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     }
     private fun DisplayTicket(ticket : Ticket){
         // Add data into the ticket item
-        hrefCustomer = ticket.customer.href
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "Ticket " + ticket.ticketNumber
         binding.ItemDetailTicket.txvTicketCode.text = getString(R.string.txvTicketCode, ticket.ticketNumber)
         binding.ItemDetailTicket.txvTicketDate.text = ticket.createdDate
@@ -133,7 +133,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
         // get args coodinate and username for the map
         getUserInfoMap(ticket.customer)
         // get the gateways of the customer
-        viewModel.getGateways(ticket.customer);
+        viewModel.getGateways()
         // Hide and Show the button depent by the initial status
         // TODO : ask yannick how to check status with constant without a toString()
         if (ticket.status == Constants.TicketStatus.Solved.toString())
