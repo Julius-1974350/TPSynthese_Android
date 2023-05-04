@@ -26,4 +26,6 @@
     <string name="solve">Solve</string>
     <string name="button_location">button location</string>
     <string name="btnOpen">Open</string>
+    <string name="btnUpdate">Update</string>
+    <string name="btnReboot">Reboot</string>
 </resources>
