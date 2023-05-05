@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatDrawableManager
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -17,7 +14,6 @@ import ca.qc.cstj.tenretni.core.Constants
 import ca.qc.cstj.tpsynthese.R
 import ca.qc.cstj.tpsynthese.databinding.FragmentDetailGatewayBinding
 import ca.qc.cstj.tpsynthese.domain.models.Gateway
-import com.bumptech.glide.Glide
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -87,10 +83,10 @@ class DetailGatewayFragment : Fragment(R.layout.fragment_detail_gateway){
             }
         }
         binding.btnReboot.setOnClickListener {
-            //viewModel.rebootGateway(args.href)
+            viewModel.rebootGateway(args.href)
         }
-        binding.btnReboot.setOnClickListener {
-            //viewModel.updateGateway(args.href)
+        binding.btnUpdate.setOnClickListener {
+            viewModel.updateGateway(args.href)
         }
     }
 
