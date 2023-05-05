@@ -28,7 +28,7 @@ object Constants {
         Online, Offline
     }
     object Delay {
-        const val LOADING_DELAY: Long = 1000L
+        const val LOADING_DELAY: Long = 10000L
     }
 
     object RefreshDelay {
@@ -36,6 +36,8 @@ object Constants {
         const val LIST_TICKET = 30000L
         const val LIST_GATEWAYS = 60000L
         const val DETAIL_TICKET = 30000L
+        const val DETAIL_GATEWAY = 60000L
     }
 
+    const val NO_FIND = "N/A"
 }

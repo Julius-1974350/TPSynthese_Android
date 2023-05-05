@@ -25,7 +25,7 @@ import ca.qc.cstj.tpsynthese.ui.ticket.list.TicketViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class GatewayFragment : Fragment() {
+class GatewayFragment : Fragment(R.layout.fragment_gateway) {
 
     private val binding: FragmentGatewayBinding by viewBinding()
     private val viewModel: GatewayViewModel by viewModels()
@@ -38,7 +38,7 @@ class GatewayFragment : Fragment() {
         gatewayRecyclerViewAdapter = GatewayRecyclerViewAdapter(listOf(), ::onRecyclerViewGatewayClick)
 
         binding.rcvGateways.apply {
-            layoutManager = GridLayoutManager(requireContext(), 1)
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = gatewayRecyclerViewAdapter
         }
 
