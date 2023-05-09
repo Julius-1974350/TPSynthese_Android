@@ -38,20 +38,43 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     private var username = ""
     private val scanQRCode = registerForActivityResult(ScanQRCode(), ::handleQRResult)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+        super.onCreate(savedInstanceState)
         DetailTicketRecyclerViewAdapter = DetailTicketRecyclerViewAdapter(listOf(), ::onRecyclerViewGatewayClick)
         binding.rcvGateways.apply {
             layoutManager = GridLayoutManager(requireContext(),2)
             adapter = DetailTicketRecyclerViewAdapter
         }
-        onResume()
     }
-
-    // Each time we resume the fragment we recall the api
-    // TODO : find a better way
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
         viewModel.retrieveOne()
+        viewModelOnEach()
+        BindingsListener()
+    }
+    private fun BindingsListener(){
+        binding.fabLocation.setOnClickListener {
+            if (position != null) {
+                val action = DetailTicketFragmentDirections.actionDetailTicketFragmentToMapsActivity(position!!, username)
+                findNavController().navigate(action)
+            }
+        }
+        binding.btnSolve.setOnClickListener {
+            viewModel.solveTicket()
+        }
+        binding.btnOpen.setOnClickListener {
+            viewModel.openTicket()
+        }
+        binding.btnInstall.setOnClickListener {
+            scanQRCode.launch(null)
+        }
+    }
+    private fun onRecyclerViewGatewayClick(gateway: Gateway) {
+        // TODO : Make navigation
+        // val action = TicketFragmentDirections.actionNavigationTicketToDetailTicketFragment(gateway.href)
+        // findNavController().navigate(action)
+    }
+    private fun viewModelOnEach(){
         viewModel.detailTicketUiState.onEach {
             when(it){
                 is DetailTicketUIState.Error -> {
@@ -74,27 +97,6 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
-
-        binding.fabLocation.setOnClickListener {
-            if (position != null) {
-                val action = DetailTicketFragmentDirections.actionDetailTicketFragmentToMapsActivity(position!!, username)
-                findNavController().navigate(action)
-            }
-        }
-        binding.btnSolve.setOnClickListener {
-            viewModel.solveTicket()
-        }
-        binding.btnOpen.setOnClickListener {
-            viewModel.openTicket()
-        }
-        binding.btnInstall.setOnClickListener {
-            scanQRCode.launch(null)
-        }
-    }
-    private fun onRecyclerViewGatewayClick(gateway: Gateway) {
-        // TODO : Make navigation
-        // val action = TicketFragmentDirections.actionNavigationTicketToDetailTicketFragment(gateway.href)
-        // findNavController().navigate(action)
     }
     private fun handleQRResult(qrResult: QRResult) {
         when(qrResult) {
