@@ -29,9 +29,9 @@
     <string name="btnUpdate">Update</string>
     <string name="btnReboot">Reboot</string>
     <string name="gateways">Gateways</string>
-    <string name="txvPin">PIN: %s</string>
-    <string name="txvSSID">SSID: %s</string>
+    <string name="txvPin" translatable="false">PIN: %s</string>
+    <string name="txvSSID" translatable="false">SSID: %s</string>
     <string name="txvKernelRevision">Kernel revision %s</string>
-    <string name="txvVersion">Version %s</string>
+    <string name="txvVersion" translatable="false">Version %s</string>
 
 </resources>

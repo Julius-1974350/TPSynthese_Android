@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import ca.qc.cstj.tenretni.core.ColorHelper
 import ca.qc.cstj.tenretni.core.Constants
+import ca.qc.cstj.tenretni.core.loadFromResource
 import ca.qc.cstj.tpsynthese.R
 import ca.qc.cstj.tpsynthese.databinding.FragmentDetailGatewayBinding
 import ca.qc.cstj.tpsynthese.domain.models.Gateway
@@ -50,27 +51,27 @@ class DetailGatewayFragment : Fragment(R.layout.fragment_detail_gateway){
             StatusChip.chipBackgroundColor = ColorHelper.connectionStatusColor(root.context, gateway.connection.status)
             txvSerialNumber.text = gateway.serialNumber
             txvMAC.text = gateway.config.mac
-            txvSSID.text = gateway.config.SSID
-            txvPin.text = gateway.pin
+            txvSSID.text = root.context.getString(R.string.txvSSID, gateway.config.SSID)
+            txvPin.text = root.context.getString(R.string.txvPin, gateway.pin)
 
             if (gateway.config.kernel != null)
             {
-                imvElement1.setImageDrawable(Drawable.createFromPath("@drawable/element_${gateway.config.kernel[0]}.png"))
-                imvElement2.setImageDrawable(Drawable.createFromPath("@drawable/element_${gateway.config.kernel[1]}.png"))
-                imvElement3.setImageDrawable(Drawable.createFromPath("@drawable/element_${gateway.config.kernel[2]}.png"))
-                imvElement4.setImageDrawable(Drawable.createFromPath("@drawable/element_${gateway.config.kernel[3]}.png"))
-                imvElement5.setImageDrawable(Drawable.createFromPath("@drawable/element_${gateway.config.kernel[4]}.png"))
+                imvElement1.loadFromResource(requireContext(), "element_${gateway.config.kernel[0].lowercase()}")
+                imvElement2.loadFromResource(requireContext(), "element_${gateway.config.kernel[1].lowercase()}")
+                imvElement3.loadFromResource(requireContext(), "element_${gateway.config.kernel[2].lowercase()}")
+                imvElement4.loadFromResource(requireContext(), "element_${gateway.config.kernel[3].lowercase()}")
+                imvElement5.loadFromResource(requireContext(), "element_${gateway.config.kernel[4].lowercase()}")
             }
-            txvKernelRevision.text = gateway.config.kernelRevision.toString()
-            txvVersion.text = gateway.config.version
+            txvKernelRevision.text = root.context.getString(R.string.txvKernelRevision, gateway.config.kernelRevision.toString())
+            txvVersion.text = root.context.getString(R.string.txvVersion, gateway.config.version)
         }
         if (gateway.connection.status == "Online") {
             with(binding) {
                 txvIp.text = gateway.connection.ip
-                txvLatence.text = gateway.connection.ping.toString()
-                txvDownload.text = gateway.connection.download.toString()
-                txvUpload.text = gateway.connection.upload.toString()
-                txvSignalQuality.text = gateway.connection.signal.toString()
+                txvLatence.text = root.context.getString(R.string.txvPing, gateway.connection.ping.toString())
+                txvDownload.text = root.context.getString(R.string.txvUploadDownload, gateway.connection.download.toString())
+                txvUpload.text = root.context.getString(R.string.txvUploadDownload, gateway.connection.upload.toString())
+                txvSignalQuality.text = root.context.getString(R.string.txvSignalQuality, gateway.connection.signal.toString())
                 if(gateway.connection.signal != null) txvSignalQuality.setTextColor(ColorHelper.connectionSignalColor(root.context, gateway.connection.signal))
             }
         } else {
