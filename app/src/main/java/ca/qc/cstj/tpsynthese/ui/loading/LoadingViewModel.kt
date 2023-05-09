@@ -3,10 +3,14 @@ package ca.qc.cstj.tpsynthese.ui.loading
 import android.app.Application
 import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import ca.qc.cstj.tenretni.core.ApiResult
 import ca.qc.cstj.tenretni.core.Constants
+import ca.qc.cstj.tpsynthese.ui.network.list.ListNetworkUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class LoadingViewModel(application: Application) : AndroidViewModel(application) {
     private val _loadingUiState = MutableStateFlow<LoadingUiState>(LoadingUiState.Empty)
@@ -28,10 +32,6 @@ class LoadingViewModel(application: Application) : AndroidViewModel(application)
                 LoadingUiState.Finished
             }
         }
-    }
+    }.start()
 
-    fun startTimer() {
-        timerCounter = 0
-        timer.start()
-    }
 }

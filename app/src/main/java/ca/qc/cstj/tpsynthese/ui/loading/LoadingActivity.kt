@@ -15,16 +15,12 @@ class LoadingActivity : AppCompatActivity() {
 
     private val viewModel : LoadingViewModel by viewModels()
     private lateinit var binding : ActivityLoadingBinding
-    private var flag = true;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(flag) {
             binding = ActivityLoadingBinding.inflate(layoutInflater)
             setContentView(binding.root)
-            viewModel.startTimer()
             show()
-        }
     }
 
     override fun onResume(){
@@ -49,7 +45,6 @@ class LoadingActivity : AppCompatActivity() {
     }
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        flag = false
         onResume()
     }
 }
