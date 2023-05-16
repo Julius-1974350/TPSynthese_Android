@@ -35,24 +35,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/StatusChip"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Online" />
-
             <Button
                 android:id="@+id/btnUpdate"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/btnUpdate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnReboot"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -64,16 +53,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/btnUpdate" />
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
             <TextView
                 android:id="@+id/txvSerialNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="27dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/StatusChip"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="b3ef109c84b99c65" />
 
             <TextView
@@ -81,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txvSerialNumber"
                 tools:text="e2:7d:2b:6a:78:c9" />
@@ -92,8 +82,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/txvSSID"
                 android:textSize="15dp"
-                app:layout_constraintEnd_toStartOf="@+id/txvPin"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txvMAC"
                 tools:text="SSID: online.driver.SCSI" />
@@ -104,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/txvPin"
                 android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/txvSSID"
                 app:layout_constraintTop_toBottomOf="@+id/txvMAC"
@@ -113,13 +103,13 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView3"
                 android:layout_width="300dp"
-                android:layout_height="275dp"
+                android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvMAC"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.13999999">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -132,10 +122,9 @@
                         android:layout_height="wrap_content"
                         android:textSize="25dp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="@+id/guideline2"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/StatusChip"
                         tools:text="51.86.224.188" />
 
                     <TextView
@@ -146,9 +135,9 @@
                         android:text="@string/txvPing"
                         android:textSize="20dp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/guideline2"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toBottomOf="@+id/txvIp"
                         tools:text="7 ns" />
 
@@ -158,7 +147,7 @@
                         android:layout_height="30dp"
                         app:layout_constraintBottom_toBottomOf="@+id/txvLatence"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintHorizontal_bias="0.2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/txvLatence"
                         app:srcCompat="@drawable/ic_baseline_sync_alt_24" />
@@ -167,23 +156,25 @@
                         android:id="@+id/txvDownload"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/txvUploadDownload"
-                        android:textSize="30dp"
+                        android:textSize="18dp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.727"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txvLatence"
+                        app:layout_constraintVertical_bias="0.0"
                         tools:text="28.345 Ebps" />
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         app:layout_constraintBottom_toBottomOf="@+id/txvDownload"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintEnd_toStartOf="@+id/txvDownload"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/txvDownload"
                         app:srcCompat="@drawable/ic_outline_cloud_download_24" />
 
@@ -191,22 +182,23 @@
                         android:id="@+id/txvUpload"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
                         android:text="@string/txvUploadDownload"
-                        android:textSize="30dp"
+                        android:textSize="18dp"
                         android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.7"
+                        app:layout_constraintHorizontal_bias="0.87"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txvDownload"
+                        app:layout_constraintTop_toBottomOf="@+id/txvSignalQuality"
                         tools:text="9.345 Ebps" />
 
                     <ImageView
                         android:id="@+id/imageView3"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         app:layout_constraintBottom_toBottomOf="@+id/txvUpload"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                        app:layout_constraintEnd_toStartOf="@+id/txvUpload"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/guideline4"
                         app:layout_constraintTop_toTopOf="@+id/txvUpload"
                         app:srcCompat="@drawable/ic_outline_cloud_upload_24" />
@@ -216,14 +208,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_begin="150dp" />
+                        app:layout_constraintGuide_begin="201dp" />
 
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         app:layout_constraintBottom_toBottomOf="@+id/txvSignalQuality"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                        app:layout_constraintEnd_toStartOf="@+id/txvSignalQuality"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/guideline4"
                         app:layout_constraintTop_toTopOf="@+id/txvSignalQuality"
                         app:srcCompat="@drawable/ic_baseline_signal_cellular_alt_24" />
@@ -232,14 +225,14 @@
                         android:id="@+id/txvSignalQuality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="20dp"
                         android:text="@string/txvSignalQuality"
                         android:textSize="25dp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.6"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txvUpload" />
+                        app:layout_constraintHorizontal_bias="0.72"
+                        app:layout_constraintStart_toStartOf="@+id/txvLatence"
+                        app:layout_constraintTop_toBottomOf="@+id/txvIp" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline4"
@@ -247,6 +240,17 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_begin="66dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/StatusChip"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Online" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -302,11 +306,11 @@
                 android:id="@+id/imvElement5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline6"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imvElement4"
-                app:layout_constraintTop_toBottomOf="@+id/cardView3"
+                app:layout_constraintTop_toBottomOf="@+id/txvMAC"
                 app:srcCompat="@drawable/rectancle" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -314,19 +318,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="48dp" />
+                app:layout_constraintGuide_begin="16dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="348dp" />
+                app:layout_constraintGuide_begin="357dp" />
 
             <TextView
                 android:id="@+id/txvKernelRevision"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/txvKernelRevision"
                 app:layout_constraintEnd_toStartOf="@+id/txvVersion"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -341,7 +346,7 @@
                 android:layout_marginStart="16dp"
                 android:text="@string/txvVersion"
                 app:layout_constraintBottom_toBottomOf="@+id/txvKernelRevision"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/txvKernelRevision"
                 app:layout_constraintTop_toTopOf="@+id/txvKernelRevision" />

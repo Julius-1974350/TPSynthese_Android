@@ -12,5 +12,6 @@
     <string name="qr_success">" La passerelle a été installée avec succès"</string>
     <string name="solve">Résoudre</string>
     <string name="button_location">Location</string>
+    <string name="gateways">Gateways</string>
     <string name="btnOpen">Ouvert</string>
 </resources>

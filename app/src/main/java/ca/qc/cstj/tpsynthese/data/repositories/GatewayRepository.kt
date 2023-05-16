@@ -62,4 +62,24 @@ class GatewayRepository {
             }
         }.flowOn(Dispatchers.IO)
     }
+    fun reboot(href:String) : Flow<ApiResult<Gateway>>{
+        val href = "${href}${Constants.BaseURL.TYPEREBOOT}"
+        return flow {
+            try {
+                emit(ApiResult.Success(gatewayDataSource.reboot(href)))
+            }catch (ex: Exception){
+                emit(ApiResult.Error(ex))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+    fun update(href:String) : Flow<ApiResult<Gateway>>{
+        val href = "${href}${Constants.BaseURL.TYPEUPDATE}"
+        return flow {
+            try {
+                emit(ApiResult.Success(gatewayDataSource.update(href)))
+            }catch (ex: Exception){
+                emit(ApiResult.Error(ex))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }

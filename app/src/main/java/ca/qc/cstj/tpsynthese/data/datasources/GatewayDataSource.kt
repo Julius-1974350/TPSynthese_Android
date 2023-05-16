@@ -47,4 +47,18 @@ class GatewayDataSource : JsonDataSource() {
             is Result.Failure -> throw result.error.exception
         }
     }
+    fun reboot(href: String):Gateway{
+        val (_, _, result) = href.httpPost().responseJson()
+        return when(result){
+            is Result.Success -> json.decodeFromString(result.value.content)
+            is Result.Failure -> throw result.error.exception
+        }
+    }
+    fun update(href: String):Gateway{
+        val (_, _, result) = href.httpPost().responseJson()
+        return when(result){
+            is Result.Success -> json.decodeFromString(result.value.content)
+            is Result.Failure -> throw result.error.exception
+        }
+    }
 }
