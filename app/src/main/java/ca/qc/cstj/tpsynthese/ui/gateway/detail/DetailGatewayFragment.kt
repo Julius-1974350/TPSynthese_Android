@@ -1,10 +1,10 @@
 package ca.qc.cstj.tpsynthese.ui.gateway.detail
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -29,7 +29,11 @@ class DetailGatewayFragment : Fragment(R.layout.fragment_detail_gateway){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        onResume()
+    }
+    override fun onResume() {
+        super.onResume()
+        viewModel.retrieveOne()
         viewModel.detailGatewayUiState.onEach {
             when(it) {
                 DetailGatewayUIState.Empty -> Unit
@@ -44,9 +48,9 @@ class DetailGatewayFragment : Fragment(R.layout.fragment_detail_gateway){
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
-
     private fun displayGateway(gateway: Gateway) {
         with(binding) {
+            (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.txvGatewayCode, gateway.serialNumber)
             StatusChip.text = gateway.connection.status
             StatusChip.chipBackgroundColor = ColorHelper.connectionStatusColor(root.context, gateway.connection.status)
             txvSerialNumber.text = gateway.serialNumber

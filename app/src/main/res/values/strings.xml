@@ -5,16 +5,15 @@
     <string name="nav_gateways">Gateways</string>
     <string name="nav_network">Network</string>
     <string name="Dev_name" translatable="false">Julius Leblanc Raphaël Nadeau William Bergeron</string>
-    <string name="apiErrorMessage" translatable="false">Error while retrieving the data from the server.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="txvTicketPriority" translatable="false"></string>
-    <string name="txvTicketDate" translatable="false"></string>
-    <string name="txvTicketCode" translatable="false">Ticket %s</string>
+    <string name="apiErrorMessage">Error while retrieving the data from the server.</string>
+    <string name="txvTicketPriority" translatable="false" />
+    <string name="txvTicketDate" translatable="false" />
+    <string name="txvTicketCode">Ticket %s</string>
+    <string name="txvGatewayCode">Gateway %s</string>
     <string name="txvPing" translatable="false">%s ns</string>
     <string name="txvUploadDownload" translatable="false">%s ebps</string>
-    <string name="txvTicketStatus" translatable="false"></string>
-    <string name="txvSignalQuality">%s dBm</string>
+    <string name="txvTicketStatus" translatable="false" />
+    <string name="txvSignalQuality" translatable="false">%s dBm</string>
     <string name="loading">Loading </string>
     <string name="countdown" translatable="false">0</string>
     <string name="countdownMax" translatable="false">/10...</string>
@@ -33,5 +32,6 @@
     <string name="txvSSID" translatable="false">SSID: %s</string>
     <string name="txvKernelRevision">Kernel revision %s</string>
     <string name="txvVersion" translatable="false">Version %s</string>
+    <string name="txvCustomerName" translatable="false">%s %s</string>
 
 </resources>

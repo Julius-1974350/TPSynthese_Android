@@ -1,7 +1,6 @@
 package ca.qc.cstj.tpsynthese.ui.ticket.detail
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
@@ -20,6 +19,7 @@ import ca.qc.cstj.tenretni.core.Constants
 import ca.qc.cstj.tpsynthese.domain.models.Customer
 import ca.qc.cstj.tpsynthese.domain.models.Gateway
 import ca.qc.cstj.tpsynthese.domain.models.Ticket
+import ca.qc.cstj.tpsynthese.ui.gateway.list.GatewayFragmentDirections
 import io.github.g00fy2.quickie.QRResult
 import io.github.g00fy2.quickie.ScanQRCode
 import kotlinx.coroutines.flow.launchIn
@@ -44,12 +44,12 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
             layoutManager = GridLayoutManager(requireContext(),2)
             adapter = DetailTicketRecyclerViewAdapter
         }
+        viewModelOnEach()
     }
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
         viewModel.retrieveOne()
-        viewModelOnEach()
         BindingsListener()
     }
     private fun BindingsListener(){
@@ -70,9 +70,8 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
         }
     }
     private fun onRecyclerViewGatewayClick(gateway: Gateway) {
-        // TODO : Make navigation
-        // val action = TicketFragmentDirections.actionNavigationTicketToDetailTicketFragment(gateway.href)
-        // findNavController().navigate(action)
+        val action = GatewayFragmentDirections.actionNavigationGatewayToDetailGatewayFragment(gateway.href)
+        findNavController().navigate(action)
     }
     private fun viewModelOnEach(){
         viewModel.detailTicketUiState.onEach {
@@ -118,7 +117,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
     }
     private fun DisplayTicket(ticket : Ticket){
         // Add data into the ticket item
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Ticket " + ticket.ticketNumber
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.txvTicketCode, ticket.ticketNumber)
         binding.ItemDetailTicket.txvTicketCode.text = getString(R.string.txvTicketCode, ticket.ticketNumber)
         binding.ItemDetailTicket.txvTicketDate.text = ticket.createdDate
         binding.ItemDetailTicket.chipPriority.text = ticket.priority
@@ -126,7 +125,7 @@ class DetailTicketFragment: Fragment(R.layout.fragment_detail_ticket) {
         binding.ItemDetailTicket.chipStatus.chipBackgroundColor = ColorHelper.ticketStatusColor(requireContext(), ticket.status)
         binding.ItemDetailTicket.chipPriority.chipBackgroundColor = ColorHelper.ticketPriorityColor(requireContext(),ticket.priority)
         // Customer data
-        binding.txvName.text = "${ticket.customer.firstName}  ${ticket.customer.lastName}"
+        binding.txvName.text =  getString(R.string.txvCustomerName, ticket.customer.firstName, ticket.customer.lastName)
         binding.txvAdress.text = ticket.customer.address
         binding.txvCity.text = ticket.customer.city
         Glide.with(requireContext())

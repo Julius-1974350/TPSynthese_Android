@@ -1,12 +1,10 @@
 package ca.qc.cstj.tpsynthese.ui.gateway.detail
 
-import android.graphics.drawable.Drawable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import ca.qc.cstj.tenretni.core.ApiResult
 import ca.qc.cstj.tpsynthese.data.repositories.GatewayRepository
-import ca.qc.cstj.tpsynthese.ui.gateway.list.GatewayUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -18,8 +16,7 @@ class DetailGatewayViewModel(private val href: String) : ViewModel() {
     private val _detailGatewayUiState =
         MutableStateFlow<DetailGatewayUIState>(DetailGatewayUIState.Loading)
     val detailGatewayUiState = _detailGatewayUiState.asStateFlow()
-
-    init {
+    fun retrieveOne(){
         viewModelScope.launch {
             detailGatewayRepository.retrieveOne(href).collect() { apiResult ->
                 _detailGatewayUiState.update {

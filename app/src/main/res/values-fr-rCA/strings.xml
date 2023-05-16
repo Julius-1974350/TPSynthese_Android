@@ -5,6 +5,7 @@
     <string name="nav_tickets">Billets</string>
     <string name="nav_gateways">Passerelles</string>
     <string name="nav_network">Réseau</string>
+    <string name="txvTicketCode">Billet %s</string>
     <string name="loading">Chargement</string>
     <string name="txtInstall">Installer</string>
     <string name="missing_permission">Permission Manquante</string>
@@ -12,6 +13,11 @@
     <string name="qr_success">" La passerelle a été installée avec succès"</string>
     <string name="solve">Résoudre</string>
     <string name="button_location">Location</string>
+    <string name="btnUpdate">Mise à jour</string>
+    <string name="btnReboot">Redémarrer</string>
     <string name="gateways">Gateways</string>
     <string name="btnOpen">Ouvert</string>
+    <string name="txvKernelRevision">Revision Kernel %s</string>
+    <string name="apiErrorMessage">Erreur lors de la récupération des données du serveur.</string>
+    <string name="txvGatewayCode">Passerelle %s</string>
 </resources>
